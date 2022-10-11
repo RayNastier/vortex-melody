@@ -11,7 +11,7 @@ import SwiftUI
 struct vortex_melodyApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            WrapperView()
         }
     }
 }
