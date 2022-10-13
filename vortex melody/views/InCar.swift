@@ -7,7 +7,8 @@
 
 import SwiftUI
 import CTPanoramaView
-import SceneKit
+//import SceneKit
+//import Metal
 
 struct PanoramaView: UIViewRepresentable {
     @State var car: Car?
@@ -15,7 +16,7 @@ struct PanoramaView: UIViewRepresentable {
     
     init(car: Car) {
         self.car = car
-        let image = UIImage(named: "M5-int")
+        let image = UIImage(named: "\(car.model)-int")
         panoramaView.image = image
         panoramaView.panoramaType = .spherical
         panoramaView.controlMethod = .both
@@ -29,7 +30,11 @@ struct PanoramaView: UIViewRepresentable {
 }
 
 struct InCarView: View {
+    
     @State var car: Car
+    
+    @Environment(\.dismiss) private var dismiss
+    @GestureState private var dragOffset = CGSize.zero
     
     var body: some View {
         PanoramaView(car: car)

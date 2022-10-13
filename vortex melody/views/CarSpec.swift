@@ -108,6 +108,7 @@ struct CarSpecView: View {
                         }
                         .foregroundColor(.white)
                         Spacer()
+                        Spacer()
                     }
                     VStack{
                         Spacer()
@@ -135,47 +136,15 @@ struct CarSpecView: View {
                 if openMenu{
                     ManifacturerMenu(car: car, openMenu: $openMenu, selectedCategory: $selectedCategory)
                 } else {
-                    if selectedCategory == nil {
-                        navbar(color: background, company: car.company, openMenu: $openMenu)
-                    } else {
-                        LazyVStack(alignment: .leading){
-                            navbar(color: background, company: car.company, openMenu: $openMenu)
-                            LazyHStack{
-                                ForEach(car.company.loadSubCategories(cat: selectedCategory ?? .Hatchback), id: \.hashValue){ subCat in
-                                    Button {
-                                        selectedSubCategory = subCat
-                                    } label: {
-                                        Text(subCat.rawValue)
-                                            .foregroundColor(.white)
-                                            .font(.custom("Rubik-Medium", size: 24))
-                                            .padding(8)
-                                            .background(Color(UIColor(background).lighter()))
-                                                .cornerRadius(16)
-                                    }
-                                }
-                            }
-                            ScrollView(showsIndicators: false){
-                                ForEach(Car.cars, id: \.id){ car in
-                                    if car.company == self.car.company && car.company.loadSubCategories(cat: selectedCategory ?? .Hatchback).contains(selectedSubCategory) {
-                                        carCard(car: car)
-                                            .showCar {
-                                                self.car = car
-                                                selectedCategory = nil
-                                                selectedSubCategory = .all
-                                            }
-                                        }
-                                }
-                            }
-                            
-                        }
-                    }
+                    navbar(color: background, company: car.company, openMenu: $openMenu)
                 }
                 Spacer()
             }
             .padding(.horizontal)
         }
+        
         .navigationBarHidden(true)
-        .background(LinearGradient(gradient: Gradient(colors: [Color(UIColor(background).lighter()), background]), startPoint: .topLeading, endPoint: .bottomTrailing))
+        .background(LinearGradient(gradient: Gradient(colors: [Color(UIColor(background).lighter()), background]), startPoint: .topLeading, endPoint: .bottomTrailing).ignoresSafeArea())
         .gesture(DragGesture().updating($dragOffset, body: { (value, state, transaction) in
             if value.startLocation.x < 40 && value.translation.width > 80 {
                 dismiss()

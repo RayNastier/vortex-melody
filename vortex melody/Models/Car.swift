@@ -13,7 +13,7 @@ enum Company: CaseIterable {
     case BMW
     case Audi
     case Porsche
-    case Hundai
+    case Hyundai
     case Toyota
     case AstonMartin
     case Peugeot
@@ -35,8 +35,8 @@ enum Company: CaseIterable {
             return "Audi"
         case .Porsche:
             return "Porsche"
-        case .Hundai:
-            return "Hundai"
+        case .Hyundai:
+            return "Hyundai"
         case .Toyota:
             return "Toyota"
         case .AstonMartin:
@@ -103,7 +103,7 @@ enum Company: CaseIterable {
             case .Sedan:
                 subcatlist.append(contentsOf: [.series911, .GT, .Panamera])
             }
-        case .Hundai:
+        case .Hyundai:
             switch cat {
             case .Hatchback:
                 subcatlist.append(.Iseries)
@@ -291,6 +291,8 @@ struct Car {
     
     static var carrera = Car(company: .Porsche, model: "911 Carrera", maxSpeed: 293, engineName: "6ZYL", engineCunsum: .petrol, horsePower: 379, engineLiters: 2.7, engineType: .V, torque: 450, category: .Sedan, subCategory: [.series911], acceleration: 4.2, price: 106100, carColors: [Color(red: 0.94, green: 0.94, blue: 0.94), Color.black, Color(red: 0.68, green: 0, blue: 0.21), Color(red: 0.95, green: 0.80, blue: 0.19)], cylenders: 6)
     
+    static var Tucson = Car(company: .Hyundai, model: "Tucson", maxSpeed: 198, engineName: "GDI", engineCunsum: .diesel, horsePower: 187, engineLiters: 2.5, engineType: .I, torque: 416, category: .SUV, subCategory: [], acceleration: 8.8, price: 30600, carColors: [], cylenders: 4)
+    
     static var macan = Car(company: .Porsche, model: "Macan", maxSpeed: 229, engineName: "cc1984", engineCunsum: .petrol, horsePower: 261, engineLiters: 2.0, engineType: .I, torque: 370, category: .SUV, subCategory: [.Macan], acceleration: 6.1, price: 57500, carColors: [Color(red: 0.94, green: 0.94, blue: 0.94), Color.black], cylenders: 4)
     
     static var taycan = Car(company: .Porsche, model: "Taycan", maxSpeed: 230, engineName: "2 Acsync", engineCunsum: .electric, horsePower: 402, engineLiters: nil, engineType: nil, torque: 345, category: nil, subCategory: [], acceleration: 5.4, price: 86700, carColors: [Color(red: 0.94, green: 0.94, blue: 0.94), Color.black], cylenders: nil)
@@ -303,5 +305,5 @@ struct Car {
     
     static var M5 = Car(company: .BMW, model: "M5", maxSpeed: 305, engineName: "4395 cc", engineCunsum: .petrol, horsePower: 617, engineLiters: 4.4, engineType: .V, torque: 750, category: .Sedan, subCategory: [.seriesM], acceleration: 3.3, price: 105000, carColors: [], cylenders: 8)
     
-    static var cars: [Car] = [.carrera ,.macan, .taycan, .WVserie7R, .S3, .RS3, .M5]
+    static var cars: [Car] = [.carrera, .Tucson ,.macan, .taycan, .WVserie7R, .S3, .RS3, .M5]
 }
