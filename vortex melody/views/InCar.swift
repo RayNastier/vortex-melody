@@ -32,13 +32,11 @@ struct PanoramaView: UIViewRepresentable {
 struct InCarView: View {
     
     @State var car: Car
-    
-    @Environment(\.dismiss) private var dismiss
     @GestureState private var dragOffset = CGSize.zero
     
     var body: some View {
         PanoramaView(car: car)
-            .ignoresSafeArea()
+            .edgesIgnoringSafeArea(.all)
     }
 }
 

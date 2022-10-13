@@ -14,7 +14,7 @@ struct ManifacturerMenu: View {
     
     @Binding var selectedCategory: Category?
     
-    @Environment(\.dismiss) private var dismiss
+    @Environment(\.presentationMode) var presentationMode
     
     var background: Color {
         return UIImage(named: car.model)?.averageColor ?? .gray
@@ -29,7 +29,7 @@ struct ManifacturerMenu: View {
             VStack(alignment: .leading, spacing: 16){
                 HStack{
                     Button {
-                        dismiss()
+                        presentationMode.wrappedValue.dismiss()
                     } label: {
                         HStack(spacing: 12){
                             Image(systemName: "chevron.backward")
@@ -56,7 +56,7 @@ struct ManifacturerMenu: View {
                 .padding(.horizontal, 32)
                 Divider()
                     .frame(height: 2)
-                    .overlay(.white)
+                    .overlay(Color.white)
                     .padding(.horizontal)
                 VStack{
                     ForEach(car.company.categories, id: \.self){ category in

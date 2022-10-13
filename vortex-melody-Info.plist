@@ -9,5 +9,7 @@
 		<string>Rubik/static/Rubik-Regular.ttf</string>
 		<string>Rubik/static/Rubik-Medium.ttf</string>
 	</array>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleDarkContent</string>
 </dict>
 </plist>

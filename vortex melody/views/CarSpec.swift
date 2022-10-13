@@ -36,7 +36,7 @@ struct CarSpecView: View {
     
     @State var selectedSubCategory: SubCategory = .all
     
-    @Environment(\.dismiss) private var dismiss
+    @Environment(\.presentationMode) private var presentationMode
     @GestureState private var dragOffset = CGSize.zero
     
     var background: Color {
@@ -127,7 +127,7 @@ struct CarSpecView: View {
             .overlay(
                 Rectangle()
                     .fill(Color.black.opacity(openMenu ? 0.6 : 0))
-                    .ignoresSafeArea()
+                    .edgesIgnoringSafeArea(.all)
                     .onTapGesture {
                         openMenu = false
                     }
@@ -144,10 +144,10 @@ struct CarSpecView: View {
         }
         
         .navigationBarHidden(true)
-        .background(LinearGradient(gradient: Gradient(colors: [Color(UIColor(background).lighter()), background]), startPoint: .topLeading, endPoint: .bottomTrailing).ignoresSafeArea())
+        .background(LinearGradient(gradient: Gradient(colors: [Color(UIColor(background).lighter()), background]), startPoint: .topLeading, endPoint: .bottomTrailing).edgesIgnoringSafeArea(.all))
         .gesture(DragGesture().updating($dragOffset, body: { (value, state, transaction) in
             if value.startLocation.x < 40 && value.translation.width > 80 {
-                dismiss()
+                presentationMode.wrappedValue.dismiss()
             }
         }))
     }
